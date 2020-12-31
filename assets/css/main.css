@@ -1717,7 +1717,7 @@ body {
 }
 
 body {
-  background: #fff;
+  background: #f1f1f1;
 }
 
 body.is-loading *,
@@ -3296,15 +3296,14 @@ button:disabled,
 }
 
 #tooltip {
-  background: #fafafa;
+  background: #ffffff;
   color: #000;
   font-weight: bold;
   padding: 1.1em 1.3em 1.2em;
   font-size: 13px;
   border-radius: 4px;
   display: none;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-  border: 1px solid #c3c3c3;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
   z-index: 99;
 }
 
@@ -3329,8 +3328,8 @@ button:disabled,
 
 #arrow::before {
   content: "";
+  background: #fff;
   transform: rotate(45deg);
-  background: #fafafa;
 }
 
 #tooltip[data-popper-placement^="top"] > #arrow {
