@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Generic - Projection by TEMPLATED</title>
+		<title>Pasbanc</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -16,7 +16,7 @@
 		<!-- Header -->
 			<header id="header">
 				<div class="inner">
-					<a href="index.html" class="logo"><strong>Projection</strong> by TEMPLATED</a>
+					<a href="index.html" class="logo">Pasbanc wealth</a>
 					<nav id="nav">
 						<a href="index.html">Home</a>
 						<a href="generic.html">Generic</a>
@@ -36,7 +36,16 @@
 					<div class="image round left">
 						<img src="images/pic01.jpg" alt="Pic 01" />
 					</div>
-					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo 
+						<span id="button" aria-describedby="tooltip">
+							<span class="tooltipview">
+								2
+							</span>
+						</span> 
+						<span id="tooltip" role="tooltip">
+							<span>Morbi in sem quis dui placerat ornare. Pellentesquenisi<br />euismod in, pharetra a, ultricies in diam sed arcu. Cras<br />consequat  egestas augue vulputate.</span>
+							<div id="arrow" data-popper-arrow></div>
+						  </span>inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
 
 					<div class="image round right">
 						<img src="images/pic02.jpg" alt="Pic 02" />
@@ -85,6 +94,58 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="https://unpkg.com/@popperjs/core@2"></script>
+			<script>
+				const button = document.querySelector('#button');
+				const tooltip = document.querySelector('#tooltip');
+			  
+				// Pass the button, the tooltip, and some options, and Popper will do the
+				// magic positioning for you:
+				let popperInstance = null;
 
+      function create() {
+        popperInstance = Popper.createPopper(button, tooltip, {
+          modifiers: [
+            {
+              name: 'offset',
+              options: {
+                offset: [0, 7],
+              },
+            },
+          ],
+        });
+      }
+	  function destroy() {
+        if (popperInstance) {
+          popperInstance.destroy();
+          popperInstance = null;
+        }
+      }
+
+      function show() {
+        tooltip.setAttribute('data-show', 'on');
+        create();
+      }
+
+      function hide() {
+        tooltip.removeAttribute('data-show');
+        destroy();
+      }
+	  
+	  button.addEventListener('click',()=>{
+		  if(tooltip.getAttribute('data-show') === 'on'){
+			 hide()
+		  }else{
+			  show()
+		  }
+	  })
+	  document.getElementsByTagName('body')[0].addEventListener('dblclick',()=>{
+		console.log('dblclick')
+		if(tooltip.getAttribute('data-show') === 'on'){
+			 hide()
+		  }
+	})
+     
+			  </script>
 	</body>
 </html>

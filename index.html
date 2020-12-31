@@ -10,6 +10,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		
 	</head>
 	<body>
 
@@ -73,7 +74,20 @@
 							<header>
 								<h3>The great way</h3>
 							</header>
-							<p>Morbi in sem quis dui placerat ornare. Pellentesquenisi<br />euismod in, pharetra a, ultricies in diam sed arcu. Cras<br />consequat  egestas augue vulputate.</p>
+							
+							<span>Morbi in sem quis dui placerat ornare. Pellentesquenisi<br />euismod in, pharetra a, ultricies in diam sed arcu.
+								<span id="button" aria-describedby="tooltip">
+									
+									<span class="tooltipview">
+										1
+									</span>
+								</span> Cras<br />consequat  egestas augue vulputate.
+								
+							<div id="tooltip" role="tooltip">
+								<span>Morbi in sem quis dui placerat ornare. Pellentesquenisi<br />euismod in, pharetra a, ultricies in diam sed arcu. Cras<br />consequat  egestas augue vulputate.</span>
+								<div id="arrow" data-popper-arrow></div>
+							  </div>
+							</span>
 							<footer>
 								<a href="#" class="button">Learn More</a>
 							</footer>
@@ -131,6 +145,60 @@
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="https://unpkg.com/@popperjs/core@2"></script>
+			<script>
+				const button = document.querySelector('#button');
+				const tooltip = document.querySelector('#tooltip');
+			  
+				// Pass the button, the tooltip, and some options, and Popper will do the
+				// magic positioning for you:
+				let popperInstance = null;
 
+      function create() {
+        popperInstance = Popper.createPopper(button, tooltip, {
+          modifiers: [
+            {
+              name: 'offset',
+              options: {
+                offset: [0, 7],
+              },
+            },
+          ],
+        });
+      }
+	  function destroy() {
+        if (popperInstance) {
+          popperInstance.destroy();
+          popperInstance = null;
+        }
+      }
+
+      function show() {
+        tooltip.setAttribute('data-show', 'on');
+        create();
+      }
+
+      function hide() {
+        tooltip.removeAttribute('data-show');
+        destroy();
+      }
+	  
+	  button.addEventListener('click',()=>{
+		  if(tooltip.getAttribute('data-show') === 'on'){
+			 hide()
+		  }else{
+			  show()
+		  }
+	  })
+
+	document.getElementsByTagName('body')[0].addEventListener('dblclick',()=>{
+		console.log('dblclick')
+		if(tooltip.getAttribute('data-show') === 'on'){
+			 hide()
+		  }
+	})
+     
+			  </script>
+			  
 	</body>
 </html>
